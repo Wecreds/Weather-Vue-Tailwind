@@ -1,35 +1,35 @@
 <script setup>
 defineProps({
-    modalActive: {
-        type:Boolean,
-        default: false,
-    },
-});
+  modalActive: {
+    type: Boolean,
+    default: false
+  }
+})
 
-defineEmits([
-    'close-modal'
-]);
-
+defineEmits(['close-modal'])
 </script>
 
 <template>
-<Teleport to="body">
+  <Teleport to="body">
     <Transition name="modal-outer">
-    
-            <div class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8" v-show="modalActive">
-    
-               <Transition name="modal-inner">
-                   <div v-if="modalActive" class="p-4 bg-white self-start mt-32 max-w-screen-sm">
-                    <slot />
-                    <button class="text-white mt-8 bg-weather-primary py-2 px-6 " @click="$emit('close-modal')">Close</button>
-                   </div>
-               </Transition>
-    
-            </div>
-    
+      <div
+        class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8"
+        v-show="modalActive"
+      >
+        <Transition name="modal-inner">
+          <div v-if="modalActive" class="p-4 bg-white self-start mt-32 max-w-screen-sm">
+            <slot />
+            <button
+              class="text-white mt-8 bg-weather-primary py-2 px-6"
+              @click="$emit('close-modal')"
+            >
+              Close
+            </button>
+          </div>
+        </Transition>
+      </div>
     </Transition>
-</Teleport>
-
+  </Teleport>
 </template>
 
 <style scoped>
