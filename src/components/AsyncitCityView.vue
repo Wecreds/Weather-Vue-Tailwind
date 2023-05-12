@@ -1,13 +1,12 @@
 <script setup>
 import axios from 'axios'
 import { useRoute } from 'vue-router'
-import { openweatherAPIkey } from '../_data/apikey.js'
 
 const route = useRoute()
 const getWeatherData = async () => {
   try {
     const weatherData = await axios.get(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=${openweatherAPIkey}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a7`
     )
     // cal current date & time
     const localOffset = new Date().getTimezoneOffset() * 60000

@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import axios from "axios";
-import { mapboxAPIkey } from '../_data/apikey.js'
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -30,7 +29,7 @@ const getSearchResults = () => {
   queryTimeout.value = setTimeout(async() => {
     if (searchQuery.value !== ''){
       try{
-        const result = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIkey}&types=place`);
+        const result = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=pk.eyJ1Ijoiam9obmtvbWFybmlja2kiLCJhIjoiY2t5NjFzODZvMHJkaDJ1bWx6OGVieGxreSJ9.IpojdT3U3NENknF6_WhR2Q&types=place`);
         mapboxSearchResults.value = result.data.features;
       } catch {
         searchError.value = true
