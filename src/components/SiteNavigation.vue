@@ -1,11 +1,30 @@
 <script setup>
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import BaseModal from './BaseModal.vue'
+import { ref } from 'vue';
+import { uid } from 'uid';
+import { RouterLink, useRoute } from 'vue-router';
+import BaseModal from './BaseModal.vue';
+
 const modalActive = ref(null)
 const toggleModal = () => {
   modalActive.value = !modalActive.value
-}
+} 
+
+const savedCities = ref([])
+const route = useRoute()
+const addCity = () => {
+  if (localStorage.getItem('savedCities')) {
+    savedCities.value = JSON.parse(
+      localStorage.getItem('savedCities')
+    );
+  }
+
+  const locationObj = {
+    id: uid(),
+    state: route.params.state
+  };
+
+};
+
 </script>
 
 <template>
@@ -25,6 +44,7 @@ const toggleModal = () => {
         ></i>
         <i
           class="fa-solid fa-plus text-xl hover:text-weather-secondary duration-150 cursor-pointer"
+          @click="addCity()"
         ></i>
       </div>
 
